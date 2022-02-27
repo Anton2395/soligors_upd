@@ -1,6 +1,7 @@
 
 venv
 alembic/versions/
+alembic/versions/__pycache__
 __pycache__
 alembic/__pycache__
 DataBase/__pycache__

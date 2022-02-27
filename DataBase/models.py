@@ -20,7 +20,7 @@ class TypeStation(base):
     id_type_station = Column(Integer, primary_key=True, nullable=False, unique=True)
     name_type_station = Column(String, nullable=False, default="No set name type")
     name_table_station = Column(String)
-    station = relationship("Station")
+    station = relationship("Station", cascade="all, delete")
 
 class Station(base):
     __tablename__ = "station"
@@ -31,8 +31,8 @@ class Station(base):
     longitude = Column(Float, nullable=True)
     latitube = Column(Float, nullable=True)
     id_type_station = Column(Integer, ForeignKey("typestation.id_type_station"))
-    tablealarm = relationship("TableAlarm")
-    stationkns = relationship("StationKNS")
+    tablealarm = relationship("TableAlarm", cascade="all, delete")
+    stationkns = relationship("StationKNS", cascade="all, delete")
 
 
 class TableAlarm(base):
@@ -52,7 +52,7 @@ class ListDriver(base):
     __tablename__ = "listdriver"
     id_driver_connection = Column(Integer, primary_key=True, unique=True, index=True)
     name_driver = Column(String, nullable=False, default="snap7")# need default?
-    stationkns = relationship("StationKNS")
+    stationkns = relationship("StationKNS", cascade="all, delete")
 
 class ListLevel(base):
     __tablename__ = "listlevel"
@@ -65,7 +65,7 @@ class ListLevel(base):
     is_sensor_submersion = Column(Boolean, nullable=False, default=False)
     name_sensor_submersion = Column(String, nullable=False, default="No name sensor submer.")
     is_analog_level = Column(Boolean, nullable=False, default=False)
-    stationkns = relationship("StationKNS")
+    stationkns = relationship("StationKNS", cascade="all, delete")
 
 
 class StationKNS(base):
@@ -76,7 +76,7 @@ class StationKNS(base):
     number_pump = Column(Integer, nullable=False)
     number_input = Column(Integer, nullable=False)
     id_list_level = Column(Integer, ForeignKey("listlevel.id_list_level"))
-    dataconnectionkns = relationship("DataConnectionKNS")
+    dataconnectionkns = relationship("DataConnectionKNS", cascade="all, delete")
 
 
 class DataConnectionKNS(base):
