@@ -1,6 +1,6 @@
 
 venv
-alembic/versions/
+alembic/versions/*
 alembic/versions/__pycache__
 __pycache__
 alembic/__pycache__
