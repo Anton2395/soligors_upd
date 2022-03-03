@@ -168,3 +168,26 @@ class TablePumpCreate(BaseModel):
 
 class TablePump(TablePumpCreate):
     id: int
+
+
+class TableLevelCreate(BaseModel):
+    id_name_level: int
+    state: bool
+
+    class Config:
+        orm_mode = True
+
+class TableLevel(TableLevelCreate):
+    id: int
+
+
+class NameLevelKNSCreate(BaseModel):
+    name_level: str
+    no_nc: bool
+    hierarchy: int
+
+    class Config:
+        orm_mode = True
+
+class NameLevelKNS(NameLevelKNSCreate):
+    id_name_level: int
