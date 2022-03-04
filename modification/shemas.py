@@ -35,9 +35,9 @@ class TableAlarmCreate(BaseModel):
     id_text_message: int
     is_active: bool
     is_acknowledge: bool
-    date_active: _dt.date
-    date_out: _dt.date
-    date_acknowledge: _dt.date
+    date_active: _dt.datetime
+    date_out: _dt.datetime
+    date_acknowledge: _dt.datetime
 
     class Config:
         orm_mode = True
@@ -100,8 +100,6 @@ class DataConnectionKNSCreate(BaseModel):
     is_auto: bool
     is_manual: bool
     is_only_read: bool
-    set_auto: bool
-    set_manual: bool
     is_distance_control: bool
     is_nsd: bool
     is_temperature: bool
@@ -142,9 +140,6 @@ class TableSignalXA(TableSignalXACreate):
 
 class TablePumpCreate(BaseModel):
     no_pump: int
-    reset_alarm: bool
-    manual_start: bool
-    manual_stop: bool
     auto_mode: int
     is_starter: bool
     name_starter: str
@@ -157,7 +152,6 @@ class TablePumpCreate(BaseModel):
     name_table_history_current: str
     nominal_current: float
     mototime: float
-    reset_mototime: bool
     state_pump: int
     name_table_history_state: str
     block_upp: bool

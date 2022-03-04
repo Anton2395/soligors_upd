@@ -4,7 +4,7 @@ from doctest import FAIL_FAST
 import string
 from xml.etree.ElementInclude import default_loader
 from sqlalchemy import create_engine
-from sqlalchemy import Column, Integer, Float, String, DateTime, ForeignKey, Boolean, Date
+from sqlalchemy import Column, Integer, Float, String, DateTime, ForeignKey, Boolean, DateTime
 from sqlalchemy import MetaData
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
@@ -46,9 +46,9 @@ class TableAlarm(base):
     id_text_message = Column(Integer, index=True)
     is_active = Column(Boolean, index=True)
     is_acknowledge = Column(Boolean, index=True)
-    date_active = Column(Date, index=True)# mb DateTime
-    date_out = Column(Date, index=True)# mb DateTime
-    date_acknowledge = Column(Date, index=True)# mb DateTime
+    date_active = Column(DateTime, index=True)
+    date_out = Column(DateTime, index=True)
+    date_acknowledge = Column(DateTime, index=True)
     station = relationship("Station", back_populates="tablealarm")
 
 
@@ -99,8 +99,6 @@ class DataConnectionKNS(base):
     is_auto = Column(Boolean, nullable=False, index=True, default=False)
     is_manual = Column(Boolean, nullable=False, index=True, default=False)
     is_only_read = Column(Boolean, nullable=False, index=True, default=False)
-    set_auto = Column(Boolean, nullable=False, index=True, default=False)# что значит это поле
-    set_manual = Column(Boolean, nullable=False, index=True, default=False)# также как и set_auuto?
     is_distance_control = Column(Boolean, nullable=False, index=True, default=False)
     is_nsd = Column(Boolean, nullable=False, index=True, default=False)
     is_temperature = Column(Boolean, nullable=False, index=True, default=False)
@@ -128,10 +126,7 @@ class TableSignalXA(base):
 class TablePump(base):
     __tablename__ = "tablepump"
     id = Column(Integer, primary_key=True, unique=True)
-    no_pump = Column(Integer, nullable=False, index=True)#  случайно не boolean?
-    reset_alarm = Column(Boolean, nullable=False, index=True, default=False)
-    manual_start = Column(Boolean, nullable=False, index=True, default=False)
-    manual_stop = Column(Boolean, nullable=False, index=True, default=False)
+    no_pump = Column(Integer, nullable=False, index=True)
     auto_mode = Column(Integer, nullable=False, index=True, default=0)
     is_starter = Column(Boolean, nullable=False, index=True, default=False)
     name_starter = Column(String, nullable=False, index=True, default="No name starter")
@@ -144,7 +139,6 @@ class TablePump(base):
     name_table_history_current = Column(String, index=True, nullable=False)
     nominal_current = Column(Float, nullable=False, index=True, default=0.0)
     mototime = Column(Float, nullable=False, index=True, default=0.0)
-    reset_mototime = Column(Boolean, nullable=False, index=True, default=False)
     state_pump = Column(Integer, nullable=False, index=True, default=0)
     name_table_history_state = Column(String, nullable=False, index=True)
     block_upp = Column(Boolean, nullable=False, default=False, index=True)

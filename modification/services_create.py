@@ -92,8 +92,6 @@ def create_data_connection_kns(db: _orm.Session, data_connection: _sh.DataConnec
         is_auto=data_connection.is_auto,
         is_manual=data_connection.is_manual,
         is_only_read=data_connection.is_only_read,
-        set_auto=data_connection.set_auto,
-        set_manual=data_connection.set_manual,
         is_distance_control=data_connection.is_distance_control,
         is_nsd=data_connection.is_nsd,
         is_temperature=data_connection.is_temperature,
@@ -131,9 +129,6 @@ def create_table_signal_xa(db: _orm.Session, signal_xa: _sh.TableSignalXACreate)
 def create_table_pump(db: _orm.Session, pump: _sh.TablePumpCreate):
     db_pump = _models.TablePump(
         no_pump=pump.no_pump,
-        reset_alarm=pump.reset_alarm,
-        manual_start=pump.manual_start,
-        manual_stop=pump.manual_stop,
         auto_mode=pump.auto_mode,
         is_starter=pump.is_starter,
         name_starter=pump.name_starter,
@@ -146,7 +141,6 @@ def create_table_pump(db: _orm.Session, pump: _sh.TablePumpCreate):
         name_table_history_current=pump.name_table_history_current,
         nominal_current=pump.nominal_current,
         mototime=pump.mototime,
-        reset_mototime=pump.reset_mototime,
         state_pump=pump.state_pump,
         name_table_history_state=pump.name_table_history_state,
         block_upp=pump.block_upp,
